@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-oc login --insecure-skip-tls-verify=true -u developer -p developer https://$OPENSHIFT_IP:8443
+oc login --insecure-skip-tls-verify=true -u developer -p developer https://api.starter-us-east-1.openshift.com:8443
 oc new-project 12factor-dev
 oc new-build --binary --name=my12factorapp
 oc new-project ci
@@ -22,6 +22,6 @@ oc create -f pipeline.yml -n ci
 oc login -u system:admin
 echo "Giving Jenkins SA a cluster-admin permission"
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:ci:jenkins -n ci
-oc login --insecure-skip-tls-verify=true -u developer -p developer https://$OPENSHIFT_IP:8443
+oc login --insecure-skip-tls-verify=true -u developer -p developer https://api.starter-us-east-1.openshift.com:8443
 echo "Project setup"
 oc project 12factor-dev
